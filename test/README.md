@@ -1,6 +1,6 @@
 # Tests
 
-Documents each test in the [Luacheck workflow](../.github/workflows/luacheck.yml) and the equivalent action usage. Use these snippets with `uses: dekallo/luacheck@main` (or your fork).
+Documents each test in the [Luacheck workflow](../.github/workflows/luacheck.yml) and the equivalent action usage. Use these snippets with `uses: BigWigsMods/luacheck@main` (or your fork).
 
 ## Fixtures
 
@@ -21,7 +21,7 @@ Documents each test in the [Luacheck workflow](../.github/workflows/luacheck.yml
 Luacheck on specific files, no custom script.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/sample.lua
 ```
@@ -31,7 +31,7 @@ Luacheck on specific files, no custom script.
 Skip luacheck, run a Lua script.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     run_luacheck: false
     custom_script: test/validate.lua
@@ -43,7 +43,7 @@ Skip luacheck, run a Lua script.
 Run luacheck, then a script. Both must pass.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/sample.lua
     custom_script: test/validate.lua
@@ -55,7 +55,7 @@ Run luacheck, then a script. Both must pass.
 Neither luacheck nor script. Exits 0.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     run_luacheck: false
 ```
@@ -69,7 +69,7 @@ These fail the step (container exits non-zero). Use when you expect the action t
 ### Luacheck fails
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/bad.lua
 ```
@@ -77,7 +77,7 @@ These fail the step (container exits non-zero). Use when you expect the action t
 ### Custom script fails
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     run_luacheck: false
     custom_script: test/validate.lua
@@ -89,7 +89,7 @@ These fail the step (container exits non-zero). Use when you expect the action t
 Exits immediately on luacheck failure; script is skipped.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/bad.lua
     fail_fast: true
@@ -102,7 +102,7 @@ Exits immediately on luacheck failure; script is skipped.
 Exits immediately when script fails.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/sample.lua
     fail_fast: true
@@ -115,7 +115,7 @@ Exits immediately when script fails.
 Runs both luacheck and script; fails at end because luacheck failed.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/bad.lua
     fail_fast: false
@@ -128,7 +128,7 @@ Runs both luacheck and script; fails at end because luacheck failed.
 Runs both; fails at end because script failed.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/sample.lua
     fail_fast: false
@@ -143,7 +143,7 @@ Runs both; fails at end because script failed.
 ### Config from URL
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/sample.lua
     config: https://raw.githubusercontent.com/your-org/your-repo/main/test/luacheckrc.minimal
@@ -152,7 +152,7 @@ Runs both; fails at end because script failed.
 ### Luacheck args (-q)
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/sample.lua
     args: -q
@@ -161,7 +161,7 @@ Runs both; fails at end because script failed.
 ### Custom script from URL
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     run_luacheck: false
     custom_script: https://raw.githubusercontent.com/your-org/your-repo/main/test/validate.lua
@@ -171,7 +171,7 @@ Runs both; fails at end because script failed.
 ### Custom script with multiple args
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     run_luacheck: false
     custom_script: test/validate.lua
@@ -183,7 +183,7 @@ Runs both; fails at end because script failed.
 Script writes `test/.written-by-script`. Add a follow-up step to verify.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     run_luacheck: false
     custom_script: test/write.lua
@@ -195,7 +195,7 @@ Script writes `test/.written-by-script`. Add a follow-up step to verify.
 Check files in a subdir. `path` sets working dir; `files` is relative to it.
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     path: test
     files: sample.lua
@@ -204,7 +204,7 @@ Check files in a subdir. `path` sets working dir; `files` is relative to it.
 ### Specific file
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/sample.lua
 ```
@@ -214,7 +214,7 @@ Check files in a subdir. `path` sets working dir; `files` is relative to it.
 Emit GitHub annotations for luacheck issues (shows in PR Files view).
 
 ```yaml
-- uses: dekallo/luacheck@main
+- uses: BigWigsMods/luacheck@main
   with:
     files: test/bad.lua
     annotate: warning  # or "error"

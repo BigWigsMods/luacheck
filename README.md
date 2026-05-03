@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Luacheck linter
-        uses: dekallo/luacheck@main
+        uses: BigWigsMods/luacheck@main
         with:
           args: -q
 ```
@@ -19,7 +19,7 @@ jobs:
 ### With a custom script
 
 ```yaml
-      - uses: dekallo/luacheck@main
+      - uses: BigWigsMods/luacheck@main
         with:
           args: -q
           custom_script: scripts/validate.lua
@@ -29,7 +29,7 @@ jobs:
 ### Custom script only (no luacheck)
 
 ```yaml
-      - uses: dekallo/luacheck@main
+      - uses: BigWigsMods/luacheck@main
         with:
           run_luacheck: false
           custom_script: scripts/validate.lua
@@ -39,7 +39,7 @@ jobs:
 ### With options
 
 ```yaml
-      - uses: dekallo/luacheck@main
+      - uses: BigWigsMods/luacheck@main
         with:
           args: --codes --ranges
           config: https://raw.githubusercontent.com/your-org/config/main/.luacheckrc
@@ -51,7 +51,7 @@ jobs:
 Set **`job_summary: true`** to append a short summary to the workflow **Summary** tab ([`GITHUB_STEP_SUMMARY`](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#adding-a-job-summary)).
 
 ```yaml
-      - uses: dekallo/luacheck@main
+      - uses: BigWigsMods/luacheck@main
         with:
           args: -q
           job_summary: true
@@ -103,7 +103,7 @@ The [Luacheck workflow](.github/workflows/luacheck.yml) self-tests the action.
 
 ## Setup
 
-Push the repo and run [.github/workflows/build.yml](.github/workflows/build.yml) to publish `ghcr.io/dekallo/luacheck`.
+Push the repo and run [.github/workflows/build.yml](.github/workflows/build.yml) to publish `ghcr.io/BigWigsMods/luacheck`.
 
 Forks: change the image in `action.yml` (the `docker pull` / `docker run` lines) if you publish elsewhere.
 
