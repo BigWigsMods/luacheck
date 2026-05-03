@@ -65,7 +65,7 @@ runs:
       shell: bash
       run: |
         # docker pull -> docker run
-        IMAGE="ghcr.io/BigWigsMods/luacheck:latest"
+        IMAGE="ghcr.io/bigwigsmods/luacheck:latest"
         MARKER_DIR="${RUNNER_TEMP:-/tmp}/luacheck-action"
         MARKER_FILE="${MARKER_DIR}/luacheck-docker-init"
 
