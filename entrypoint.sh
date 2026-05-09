@@ -156,7 +156,7 @@ run_custom_script() {
     script_exit=0
     if [ -n "$CUSTOM_SCRIPT" ]; then
         [ "$RUN_LUACHECK" = "true" ] && echo ""
-        echo "Running $CUSTOM_SCRIPT:"
+        echo "Running $CUSTOM_SCRIPT"
         script_path=""
         case "$CUSTOM_SCRIPT" in
             http://*|https://*)
