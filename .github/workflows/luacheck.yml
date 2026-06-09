@@ -30,8 +30,8 @@ jobs:
           docker build -t luacheck .
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/sample.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/sample.lua \
             -e INPUT_RUN_LUACHECK=true \
             luacheck
 
@@ -61,8 +61,8 @@ jobs:
           docker build -t luacheck .
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/sample.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/sample.lua \
             -e INPUT_RUN_LUACHECK=true \
             -e INPUT_CUSTOM_SCRIPT=test/validate.lua \
             -e INPUT_CUSTOM_ARGS=. \
@@ -94,8 +94,8 @@ jobs:
           set +e
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/bad.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/bad.lua \
             -e INPUT_RUN_LUACHECK=true \
             luacheck
           [ $? -ne 0 ]
@@ -129,8 +129,8 @@ jobs:
           set +e
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/bad.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/bad.lua \
             -e INPUT_RUN_LUACHECK=true \
             -e INPUT_FAIL_FAST=true \
             -e INPUT_CUSTOM_SCRIPT=test/validate.lua \
@@ -149,8 +149,8 @@ jobs:
           set +e
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/sample.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/sample.lua \
             -e INPUT_RUN_LUACHECK=true \
             -e INPUT_FAIL_FAST=true \
             -e INPUT_CUSTOM_SCRIPT=test/validate.lua \
@@ -176,8 +176,8 @@ jobs:
             -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
             -e GITHUB_STEP_SUMMARY=/workspace/.ci-step-summary.md \
-            -e INPUT_FILES=test/bad.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/bad.lua \
             -e INPUT_RUN_LUACHECK=true \
             -e INPUT_FAIL_FAST=false \
             -e INPUT_CUSTOM_SCRIPT=test/validate.lua \
@@ -206,8 +206,8 @@ jobs:
           set +e
           out=$(docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/sample.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/sample.lua \
             -e INPUT_RUN_LUACHECK=true \
             -e INPUT_FAIL_FAST=false \
             -e INPUT_CUSTOM_SCRIPT=test/validate.lua \
@@ -230,8 +230,8 @@ jobs:
           docker build -t luacheck .
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/sample.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/sample.lua \
             -e INPUT_CONFIG="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/test/luacheckrc.minimal" \
             luacheck
 
@@ -245,8 +245,8 @@ jobs:
           docker build -t luacheck .
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/sample.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/sample.lua \
             -e INPUT_ARGS=-q \
             luacheck
 
@@ -323,8 +323,8 @@ jobs:
           docker build -t luacheck .
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/sample.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/sample.lua \
             luacheck
 
   annotate-warning:
@@ -338,8 +338,8 @@ jobs:
           set +e
           docker run --rm -v "$PWD:/workspace" \
             -e GITHUB_WORKSPACE=/workspace \
-            -e INPUT_FILES=test/bad.lua \
             -e INPUT_PATH=. \
+            -e INPUT_FILES=test/bad.lua \
             -e INPUT_ANNOTATE=warning \
             luacheck
           [ $? -ne 0 ]

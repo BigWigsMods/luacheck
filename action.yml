@@ -71,8 +71,20 @@ runs:
 
         mkdir -p "$MARKER_DIR"
         if [ ! -f "$MARKER_FILE" ]; then
-          docker pull -q "$IMAGE" >/dev/null
-          touch "$MARKER_FILE"
+          for attempt in 1 2 3 4 5; do
+            if docker pull -q "$IMAGE" >/dev/null; then
+              touch "$MARKER_FILE"
+              break
+            fi
+            if [ "$attempt" -lt 5 ]; then
+              echo "Pull attempt $attempt/5 failed, retrying in $((attempt * 10))s..."
+              sleep $((attempt * 10))
+            fi
+          done
+          if [ ! -f "$MARKER_FILE" ]; then
+            echo "::error::Failed to pull $IMAGE after 5 attempts"
+            exit 1
+          fi
         fi
 
         EXTRA=()
