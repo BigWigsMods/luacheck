@@ -9,7 +9,7 @@ jobs:
     name: Action (root action.yml)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Run luacheck
         uses: ./
         with:
@@ -24,7 +24,7 @@ jobs:
     name: Luacheck only
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -39,7 +39,7 @@ jobs:
     name: Custom script only
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -55,7 +55,7 @@ jobs:
     name: Luacheck and custom script (both pass)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -72,7 +72,7 @@ jobs:
     name: Both disabled (no-op)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -87,7 +87,7 @@ jobs:
     name: Luacheck fails (expect fail)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -104,7 +104,7 @@ jobs:
     name: Custom script fails (expect fail)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -122,7 +122,7 @@ jobs:
     name: fail_fast=true, luacheck fails (script never runs)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -142,7 +142,7 @@ jobs:
     name: fail_fast=true, script fails
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -162,7 +162,7 @@ jobs:
     name: fail_fast=false, both run, luacheck fails
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -199,7 +199,7 @@ jobs:
     name: fail_fast=false, both run, script fails
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -224,7 +224,7 @@ jobs:
     name: Config from URL
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -239,7 +239,7 @@ jobs:
     name: Luacheck args (-q)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -254,7 +254,7 @@ jobs:
     name: Custom script from URL
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -270,7 +270,7 @@ jobs:
     name: Custom script with multiple args
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -286,7 +286,7 @@ jobs:
     name: Script modifies repo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -303,7 +303,7 @@ jobs:
     name: Path subdirectory
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -317,7 +317,7 @@ jobs:
     name: Specific file
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .
@@ -331,7 +331,7 @@ jobs:
     name: Annotate warnings
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and run
         run: |
           docker build -t luacheck .

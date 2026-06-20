@@ -9,7 +9,7 @@ jobs:
   luacheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Luacheck linter
         uses: BigWigsMods/luacheck@main
         with:
