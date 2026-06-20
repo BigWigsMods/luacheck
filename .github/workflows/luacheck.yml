@@ -232,7 +232,7 @@ jobs:
             -e GITHUB_WORKSPACE=/workspace \
             -e INPUT_PATH=. \
             -e INPUT_FILES=test/sample.lua \
-            -e INPUT_CONFIG="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/test/luacheckrc.minimal" \
+            -e INPUT_CONFIG="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/test/luacheckrc.minimal" \
             luacheck
 
   args-quiet:
@@ -262,7 +262,7 @@ jobs:
             -e GITHUB_WORKSPACE=/workspace \
             -e INPUT_PATH=. \
             -e INPUT_RUN_LUACHECK=false \
-            -e INPUT_CUSTOM_SCRIPT="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}/test/validate.lua" \
+            -e INPUT_CUSTOM_SCRIPT="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/test/validate.lua" \
             -e INPUT_CUSTOM_ARGS=. \
             luacheck
 
