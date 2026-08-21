@@ -25,6 +25,12 @@ inputs:
       URL to a custom .luacheckrc config file.
     required: false
     default: ''
+  image_tag:
+    description: >
+      Docker image tag to run. By default, released action refs like v1 use the matching
+      image tag; other refs use latest.
+    required: false
+    default: ''
   annotate:
     description: >
       Emit GitHub annotations for issues. "none", "warning", or "error".
@@ -63,11 +69,27 @@ runs:
   steps:
     - name: Run luacheck
       shell: bash
+      env:
+        ACTION_REF: ${{ github.action_ref }}
+        INPUT_IMAGE_TAG: ${{ inputs.image_tag }}
       run: |
         # docker pull -> docker run
-        IMAGE="ghcr.io/bigwigsmods/luacheck:latest"
+        IMAGE_TAG="$INPUT_IMAGE_TAG"
+        if [ -z "$IMAGE_TAG" ]; then
+          case "$ACTION_REF" in
+            v[0-9]*)
+              IMAGE_TAG="$ACTION_REF"
+              ;;
+            *)
+              IMAGE_TAG="latest"
+              ;;
+          esac
+        fi
+
+        IMAGE="ghcr.io/bigwigsmods/luacheck:${IMAGE_TAG}"
+        SAFE_IMAGE_TAG=$(printf '%s' "$IMAGE_TAG" | tr -c 'A-Za-z0-9_.-' '_')
         MARKER_DIR="${RUNNER_TEMP:-/tmp}/luacheck-action"
-        MARKER_FILE="${MARKER_DIR}/luacheck-docker-init"
+        MARKER_FILE="${MARKER_DIR}/luacheck-docker-init-${SAFE_IMAGE_TAG}"
 
         mkdir -p "$MARKER_DIR"
         if [ ! -f "$MARKER_FILE" ]; then

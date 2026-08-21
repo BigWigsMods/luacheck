@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Luacheck linter
-        uses: BigWigsMods/luacheck@main
+        uses: BigWigsMods/luacheck@v1
         with:
           args: -q
 ```
@@ -19,7 +19,7 @@ jobs:
 ### With a custom script
 
 ```yaml
-      - uses: BigWigsMods/luacheck@main
+      - uses: BigWigsMods/luacheck@v1
         with:
           args: -q
           custom_script: scripts/validate.lua
@@ -29,7 +29,7 @@ jobs:
 ### Custom script only (no luacheck)
 
 ```yaml
-      - uses: BigWigsMods/luacheck@main
+      - uses: BigWigsMods/luacheck@v1
         with:
           run_luacheck: false
           custom_script: scripts/validate.lua
@@ -39,7 +39,7 @@ jobs:
 ### With options
 
 ```yaml
-      - uses: BigWigsMods/luacheck@main
+      - uses: BigWigsMods/luacheck@v1
         with:
           args: --codes --ranges
           config: https://raw.githubusercontent.com/your-org/config/main/.luacheckrc
@@ -51,7 +51,7 @@ jobs:
 Set **`job_summary: true`** to append a short summary to the workflow **Summary** tab ([`GITHUB_STEP_SUMMARY`](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#adding-a-job-summary)).
 
 ```yaml
-      - uses: BigWigsMods/luacheck@main
+      - uses: BigWigsMods/luacheck@v1
         with:
           args: -q
           job_summary: true
@@ -65,6 +65,7 @@ Set **`job_summary: true`** to append a short summary to the workflow **Summary*
 | `path`          | `.`     | Working directory (relative to workspace)                                                                                                                                    |
 | `args`          | `""`    | Extra luacheck CLI arguments (see below)                                                                                                                                     |
 | `config`        | `""`    | URL to custom `.luacheckrc`                                                                                                                                                  |
+| `image_tag`     | `""`    | Docker image tag override. By default, action refs like `v1` use matching image tag `v1`; other refs use `latest`                                                            |
 | `annotate`      | `none`  | `none`, `warning`, or `error` — show issues as PR annotations (incompatible with `-qq`/`-qqq`)                                                                               |
 | `custom_script` | `""`    | URL or path (relative to `path`, or absolute) for a Lua script run after luacheck                                                                                            |
 | `custom_args`   | `"."`   | Arguments passed to the custom script                                                                                                                                        |
@@ -89,6 +90,8 @@ Full reference: [luacheck CLI docs](https://luacheck.readthedocs.io/en/stable/cl
 
 Custom scripts run with the workspace mounted; they can read/write repo files.
 Within a single job, the action pulls the container image once and reuses it for later invocations.
+Released action refs use the matching Docker image tag by default, so `BigWigsMods/luacheck@v1` runs `ghcr.io/bigwigsmods/luacheck:v1`.
+Use `image_tag` only when you need to override that default.
 
 ## Repo structure
 
@@ -104,6 +107,7 @@ The [Luacheck workflow](.github/workflows/luacheck.yml) self-tests the action.
 ## Setup
 
 Push the repo and run [.github/workflows/build.yml](.github/workflows/build.yml) to publish `ghcr.io/BigWigsMods/luacheck`.
+The `main` branch publishes `latest`; release tags like `v1` publish both `v1` and the compatibility alias `1`.
 
 Forks: change the image in `action.yml` (the `docker pull` / `docker run` lines) if you publish elsewhere.
 
