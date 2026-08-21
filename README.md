@@ -66,6 +66,7 @@ Set **`job_summary: true`** to append a short summary to the workflow **Summary*
 | `args`          | `""`    | Extra luacheck CLI arguments (see below)                                                                                                                                     |
 | `config`        | `""`    | URL to custom `.luacheckrc`                                                                                                                                                  |
 | `image_tag`     | `""`    | Docker image tag override. By default, action refs like `v1` use matching image tag `v1`; other refs use `latest`                                                            |
+| `image_repository` | `""` | Docker image repository override. Defaults to `ghcr.io/<action owner>/<action repo>`                                                                                         |
 | `annotate`      | `none`  | `none`, `warning`, or `error` — show issues as PR annotations (incompatible with `-qq`/`-qqq`)                                                                               |
 | `custom_script` | `""`    | URL or path (relative to `path`, or absolute) for a Lua script run after luacheck                                                                                            |
 | `custom_args`   | `"."`   | Arguments passed to the custom script                                                                                                                                        |
@@ -91,7 +92,8 @@ Full reference: [luacheck CLI docs](https://luacheck.readthedocs.io/en/stable/cl
 Custom scripts run with the workspace mounted; they can read/write repo files.
 Within a single job, the action pulls the container image once and reuses it for later invocations.
 Released action refs use the matching Docker image tag by default, so `BigWigsMods/luacheck@v1` runs `ghcr.io/bigwigsmods/luacheck:v1`.
-Use `image_tag` only when you need to override that default.
+Forks use their own image repository automatically, so `your-org/luacheck@v1` runs `ghcr.io/your-org/luacheck:v1`.
+Use `image_tag` or `image_repository` only when you need to override those defaults.
 
 ## Repo structure
 
@@ -109,7 +111,7 @@ The [Luacheck workflow](.github/workflows/luacheck.yml) self-tests the action.
 Push the repo and run [.github/workflows/build.yml](.github/workflows/build.yml) to publish `ghcr.io/BigWigsMods/luacheck`.
 The `main` branch publishes `latest`; release tags like `v1` publish both `v1` and the compatibility alias `1`.
 
-Forks: change the image in `action.yml` (the `docker pull` / `docker run` lines) if you publish elsewhere.
+Forks publish under their own repository path by default through `ghcr.io/${{ github.repository }}`.
 
 ## Local use
 
