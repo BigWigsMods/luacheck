@@ -109,7 +109,7 @@ The [Luacheck workflow](.github/workflows/luacheck.yml) self-tests the action.
 ## Setup
 
 Push the repo and run [.github/workflows/build.yml](.github/workflows/build.yml) to publish `ghcr.io/BigWigsMods/luacheck`.
-The `main` branch publishes `latest`; release tags like `v1` publish both `v1` and the compatibility alias `1`.
+The `main` branch publishes `latest`; release tags like `v1` publish the matching `v1` image tag.
 
 Forks publish under their own repository path by default through `ghcr.io/${{ github.repository }}`.
 
